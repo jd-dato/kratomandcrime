@@ -1,0 +1,35 @@
+---
+title: "Kratom and Violent Crime"
+author: "J.D. Dato"
+format: html
+editor: visual
+execute: 
+  echo: false
+---
+
+## README
+
+This is a fully functional and interactive website that visualizes a sample data set. This data set shows a possible relationship between violent crimes and kratom sales in/around a local head shop. The color of each data point represents not the value of the sales, but how many units of kratom were sold.
+
+```{r, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE, results='hide'}
+library(tidyverse)
+library(ggplot2)
+library(plyr)
+library(plotly)
+library(flexdashboard)
+library(readr)
+KratomSales1 <- read.csv("ggplotlearnyeahqueerliberationvibes/KratomSales1.csv", header = TRUE)
+litchart <- ggplot(data = KratomSales1, aes(x=TotalSales, y= ViolentCrime, color=Units)) +
+  geom_point() + geom_smooth(method = lm, fill='green', se=TRUE, alpha=0.09)
+
+litchart + labs(title='Kratom Sales Compared to Violent Crime', 
+            subtitle = "Compared to both units sold and total sales amount",
+            y= 'Violent Crime Rate for the Week',
+            x='Total Kratom Sales for the Week') 
+
+
+```
+
+```{r}
+ggplotly(litchart)
+```
