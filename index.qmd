@@ -20,9 +20,7 @@ library(flexdashboard)
 library(readr)
 KratomSales1 <- read.csv("ggplotlearnyeahqueerliberationvibes/KratomSales1.csv", header = TRUE)
 litchart <- ggplot(data = KratomSales1, aes(x=TotalSales, y= ViolentCrime, color=Units)) +
-  geom_point() + geom_smooth(method = lm, fill='green', se=TRUE, alpha=0.09)
-
-litchart + labs(title='Kratom Sales Compared to Violent Crime', 
+  geom_point() + geom_smooth(method = lm, fill='green', se=TRUE, alpha=0.09) + labs(title='Kratom Sales Compared to Violent Crime', 
             subtitle = "Compared to both units sold and total sales amount",
             y= 'Violent Crime Rate for the Week',
             x='Total Kratom Sales for the Week') 
