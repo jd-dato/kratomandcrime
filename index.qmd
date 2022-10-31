@@ -5,11 +5,18 @@ format: html
 editor: visual
 execute: 
   echo: false
+toc: True
+theme: solar
+smooth-scroll: true
 ---
 
-## README
+# Kratom and Crime
 
-This is a fully functional and interactive website that visualizes a sample data set. This data set shows a possible relationship between violent crimes and kratom sales in/around a local head shop. The color of each data point represents not the value of the sales, but how many units of kratom were sold.
+***Consider that this data set is an example and not reflective of any real relationship that could exist between Kratom and crime***
+
+## 3-D Scatterplot
+
+ This 3D Scatterplot set shows a possible relationship between violent crimes and Kratom sales in/around a local head shop. The colors show how many transactions were made in one day. The Z-axis (up-down), shows the level of violent crime. The Y and X axis show the Units of Kratom sold, and the dollar amount of total sales, respectively. ***3D Visualizations are a great way to show 3+ variables all at once, in a way that is still simple to understand.***
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE, results='hide'}
 library(tidyverse)
@@ -18,7 +25,9 @@ library(plyr)
 library(plotly)
 library(flexdashboard)
 library(readr)
-KratomSales1 <- read.csv("ggplotlearnyeahqueerliberationvibes/KratomSales1.csv", header = TRUE)
+library(lattice)
+library(reshape2)
+KratomSales1 <- read.csv("KratomSales1.csv", header = TRUE)
 litchart <- ggplot(data = KratomSales1, aes(x=TotalSales, y= ViolentCrime, color=Units)) +
   geom_point() + geom_smooth(method = lm, fill='green', se=TRUE, alpha=0.09) + labs(title='Kratom Sales Compared to Violent Crime', 
             subtitle = "Compared to both units sold and total sales amount",
@@ -28,6 +37,24 @@ litchart <- ggplot(data = KratomSales1, aes(x=TotalSales, y= ViolentCrime, color
 
 ```
 
-```{r}
-ggplotly(litchart)
+```{r, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+plot_ly(KratomSales1, x = ~TotalSales, y = ~Units, z = ~ViolentCrime, color = ~Transactions,
+        colors = c('#FFC000', '#228B22'))
+```
+
+## Correlation Matrix
+
+This is a correlation matrix. Each square represents the pearson correlation r value between the two intersecting variables. The strength/direction of the correlation can be determined from viewing the legend on the right side and comparing it to the square representing the variables in question.
+
+```{r, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+KratomSales2 <- as.data.frame(KratomSales1)
+KratomSales3 <- KratomSales2[-c(1,2,7)]
+corr_mat <- round(cor(KratomSales3),2)
+
+melted_corr_mat <- melt(corr_mat)
+gx <- ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2, fill = value))+
+  geom_tile() +  scale_fill_gradient(low = "#228B22",
+                                     high = "#FFC000",
+                                     guide = "colorbar")
+ggplotly(gx)
 ```
