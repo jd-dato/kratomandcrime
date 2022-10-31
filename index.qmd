@@ -16,7 +16,9 @@ smooth-scroll: true
 
 ## 3-D Scatterplot
 
- This 3D Scatterplot set shows a possible relationship between violent crimes and Kratom sales in/around a local head shop. The colors show how many transactions were made in one day. The Z-axis (up-down), shows the level of violent crime. The Y and X axis show the Units of Kratom sold, and the dollar amount of total sales, respectively. ***3D Visualizations are a great way to show 3+ variables all at once, in a way that is still simple to understand.***
+This data set is by [David Maillie](https://www.kaggle.com/datasets/dmaillie/2018-head-shop-kratom-sales-violentcrime-data).
+
+This 3D Scatterplot set shows a possible relationship between violent crimes and Kratom sales in/around a local head shop. The colors show how many transactions were made in one day. The Z-axis (up-down), shows the level of violent crime. The Y and X axis show the Units of Kratom sold, and the dollar amount of total sales, respectively. ***3D Visualizations are a great way to show 3+ variables all at once, in a way that is still simple to understand.***
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE, results='hide'}
 library(tidyverse)
