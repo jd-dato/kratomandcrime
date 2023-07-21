@@ -1,0 +1,37 @@
+---
+title: "KratomAnimations"
+author: "J.D. Dato"
+format: html
+editor: visual
+---
+
+# Introduction
+
+I am using the packages and techniques that are available at (this article)\[https://towardsdatascience.com/animating-your-data-visualizations-like-a-boss-using-r-f94ae20843e3\] to create an animation of data similar to the one that was showed in one of my social psych classes by Hans *Gosling?*.
+
+# Code Starts Here
+
+## Loading in Libraries and Necessary Packages
+
+```{r}
+necessary_packages <- c("ggplot2","gganimate")
+
+for (package in necessary_packages) {
+  if(!require(package, character.only = TRUE)){
+    install.packages(package)
+    library(package,character.only = TRUE)
+  }
+}
+```
+
+## Importing the Data:
+
+```{r}
+library(readr)
+KratomSales <- read_csv("KratomSales1.csv")
+
+```
+
+```{r}
+head(KratomSales)
+```

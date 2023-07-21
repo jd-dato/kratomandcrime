@@ -18,13 +18,13 @@ smooth-scroll: true
 
 This decision tree was created by letting the computer discover what variables lead to changes in violent crime.
 
-To read a tree like this, start at the top. The algorithm determined that the variable of interest was the Total Sales. *Node 1 has* a p-value of less than 0.001, indicating that the finding here is statistically significant. We can proceed to *Node 2* if the Kratom shop we're using to predict the violent crime rate has total sales less than or equal to 3407 or *Node 5* if the total sales are more than that.
+To read a tree like this, start at the top. The algorithm determined that the variable of interest was the Total Sales. *Node 1 has* a p-value of less than 0.001, indicating that the finding here is statistically significant. We can proceed to *Node 2* if the Kratom shop we're using to predict the violent crime rate has total sales less than or equal to 3407 or *Node 5* if the total sales are more than that.
 
-Let's say that we are looking at a Kratom shop in the real world, and the total sales are 1850. After moving from *Node 1* to *Node 2*, there's only so much else we can do. Although *Node 3* and *Node 4* can predict the violent crime rate, since these two falls under *Node 2*, they are not helpful because the p-value is greater than 0.05. This means that these results have **NO STATISTICAL SIGNIFICANCE**.
+Let's say that we are looking at a Kratom shop in the real world, with total sales are 1850. After moving from *Node 1* to *Node 2*, there's only so much else we can do. Although *Node 3* and *Node 4* can predict the violent crime rate, since these two fall under *Node 2*, they are not helpful because the p-value is greater than 0.05. This means that these results have **NO STATISTICAL SIGNIFICANCE**.
 
-However, suppose a real-world Kratom Shop's total sales were above 3407. In that case, we can reliably predict the violent crime rate based on this dataset because the p-value of *Node 1* is way less than 0.05.
+However, suppose a real-world Kratom Shop's total sales were above 3407. In that case, we can reliably predict the violent crime rate based on this dataset because the p-value of *Node 1* is way less than 0.05.
 
-Suppose the shop in question's total sales were 3560, for example. In that case, we could estimate that the violent crime rate that week would be between 600 and 800, possibly even 1000.
+Suppose the shop in question's total sales were 3560, for example. In that case, we could estimate that the weekly violent crime rate would be between 600 and 800, possibly even 1000.
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 KratomSales1 <- read.csv("KratomSales1.csv", header = TRUE)
